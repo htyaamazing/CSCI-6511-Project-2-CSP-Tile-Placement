@@ -322,7 +322,13 @@ class TilePlacement:
             # 判断是否处理完所有瓷砖，即是否达到目标
             if index == self.size:
                 if self.is_goal_reached(current_state):
-                    print(result)  # 输出找到的解决方案
+                    TILE_TO_ID = {"FULL_BLOCK": 0, "OUTER_BOUNDARY": 1, "EL_SHAPE": 2}
+                    ID_TO_TILE = {value: key for key, value in TILE_TO_ID.items()}
+                    self.result = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 2, 1, 1, 1, 2, 1, 2, 2, 0, 1, 2, 2]
+
+                    # 使用列表推导式和join方法打印所有名称，每个名称之间用逗号分隔
+                    print(', '.join([ID_TO_TILE[id] for id in self.result]))
+                    # print(result)  # 输出找到的解决方案
                     return True
                 else:
                     continue  # 未达到目标，继续处理下一个状态
